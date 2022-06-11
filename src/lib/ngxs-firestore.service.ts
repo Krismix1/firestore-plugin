@@ -3,8 +3,8 @@ import { Observable, from, of } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
 import { map, mapTo, timeoutWith } from 'rxjs/operators';
 import { NgxsFirestoreAdapter } from './ngxs-firestore.adapter';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 
 /**
  * Changes the behavior of a set() call to only replace the values specified
@@ -18,8 +18,7 @@ export abstract class NgxsFirestore<T> {
 
   protected abstract path: string;
   protected idField: string = 'id';
-
-  protected converter = {
+  protected converter: firebase.firestore.FirestoreDataConverter<T> = {
     toFirestore: (value) => {
       return value;
     },
@@ -37,7 +36,7 @@ export abstract class NgxsFirestore<T> {
       .doc<T>(this.docRef(id))
       .snapshotChanges()
       .pipe(
-        map((docSnapshot: any) => {
+        map((docSnapshot) => {
           if (docSnapshot.payload.exists) {
             return this.getDataWithId(docSnapshot.payload);
           } else {
