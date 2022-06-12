@@ -16,12 +16,12 @@ describe('InjectCustomDependenciesService', () => {
   );
 
   it('should be created', () => {
-    const service: InjectCustomDependenciesService = TestBed.get(InjectCustomDependenciesService);
+    const service: InjectCustomDependenciesService = TestBed.inject(InjectCustomDependenciesService);
     expect(service).toBeTruthy();
   });
 
   it('should inject a custom dep', () => {
-    const service: InjectCustomDependenciesService = TestBed.get(InjectCustomDependenciesService);
+    const service: InjectCustomDependenciesService = TestBed.inject(InjectCustomDependenciesService);
     expect(service.customeDependency.works()).toBeTruthy();
   });
 });

@@ -12,7 +12,7 @@ describe('NGXS Firestore State', () => {
       imports: [NgxsModule.forRoot([]), AngularFireModule.initializeApp({}), NgxsFirestoreModule.forRoot()]
     });
 
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   });
 
   test('State exists', () => {

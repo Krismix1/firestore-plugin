@@ -32,7 +32,7 @@ describe('NgxsFirestore', () => {
 
   it('cant be directly instantiated', () => {
     expect(() => {
-      TestBed.get(NgxsFirestore);
+      TestBed.inject(NgxsFirestore);
     }).toThrowError('No provider for NgxsFirestore!');
   });
 
@@ -42,7 +42,7 @@ describe('NgxsFirestore', () => {
       protected path = 'test';
     }
 
-    expect(TestBed.get(TestFirestore)).toBeTruthy();
+    expect(TestBed.inject(TestFirestore)).toBeTruthy();
   });
 
   describe('', () => {
@@ -54,14 +54,14 @@ describe('NgxsFirestore', () => {
     describe('create$', () => {
       it('should create id if not provided', () => {
         createIdMock.mockReturnValue('newId');
-        const service: ImplFirestore = TestBed.get(ImplFirestore);
+        const service: ImplFirestore = TestBed.inject(ImplFirestore);
         service.create$({}).subscribe((id) => {
           expect(id).toEqual('newId');
         });
       });
 
       it('should return id when provided', () => {
-        const service: ImplFirestore = TestBed.get(ImplFirestore);
+        const service: ImplFirestore = TestBed.inject(ImplFirestore);
         service.create$({ id: 'someid' }).subscribe((id) => {
           expect(id).toEqual('someid');
         });
@@ -71,14 +71,14 @@ describe('NgxsFirestore', () => {
     describe('upsert$', () => {
       it('should create id if not provided', () => {
         createIdMock.mockReturnValue('newId');
-        const service: ImplFirestore = TestBed.get(ImplFirestore);
+        const service: ImplFirestore = TestBed.inject(ImplFirestore);
         service.upsert$({}).subscribe((id) => {
           expect(id).toEqual('newId');
         });
       });
 
       it('should return id when provided', () => {
-        const service: ImplFirestore = TestBed.get(ImplFirestore);
+        const service: ImplFirestore = TestBed.inject(ImplFirestore);
         service.upsert$({ id: 'someid' }).subscribe((id) => {
           expect(id).toEqual('someid');
         });
