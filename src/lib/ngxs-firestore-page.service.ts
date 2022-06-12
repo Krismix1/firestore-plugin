@@ -36,10 +36,10 @@ export class NgxsFirestorePageService {
   constructor(private actions$: Actions, private pageId: NgxsFirestorePageIdService) {}
 
   create<T>(
-    queryFn: (pageFn: QueryFn) => Observable<T>,
+    queryFn: (pageFn: QueryFn<T>) => Observable<T[]>,
     size: number,
     orderByCfg: { fieldPath: string | FieldPath; directionStr?: 'desc' | 'asc' }[]
-  ): Observable<{ results: T; pageId: string }> {
+  ): Observable<{ results: T[]; pageId: string }> {
     return defer(() => {
       const pages: FirestorePage[] = [];
 
