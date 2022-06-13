@@ -1,30 +1,21 @@
-import { TestBed } from '@angular/core/testing';
-import { NgxsFirestore } from './ngxs-firestore.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { TestBed } from '@angular/core/testing';
+import { doc, DocumentReference, Firestore, setDoc } from '@angular/fire/firestore';
+import { Store } from '@ngxs/store';
+import { NgxsFirestore } from './ngxs-firestore.service';
+
+jest.mock('@angular/fire/firestore');
 
 describe('NgxsFirestore', () => {
   const createIdMock = jest.fn();
-  const angularFirestoreMock = jest.fn().mockImplementation(() => ({
-    createId: createIdMock,
-    doc: jest.fn(() => ({
-      set: jest.fn(() => of({})),
-      ref: {
-        withConverter: jest.fn()
-      }
-    }))
-  }));
+  const mockDoc = jest.mocked(doc);
+  mockDoc.mockImplementation(() => ({ id: createIdMock(), withConverter: jest.fn() } as unknown as DocumentReference));
+  jest.mocked(setDoc).mockResolvedValue();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: AngularFirestore, useValue: angularFirestoreMock() },
-        {
-          provide: AngularFirestore,
-          useValue: angularFirestoreMock()
-        },
+        { provide: Firestore, useValue: jest.fn() },
         { provide: Store, useValue: jest.fn() }
       ]
     });
@@ -53,7 +44,7 @@ describe('NgxsFirestore', () => {
 
     describe('create$', () => {
       it('should create id if not provided', () => {
-        createIdMock.mockReturnValue('newId');
+        // createIdMock.mockReturnValue('newId');
         const service: ImplFirestore = TestBed.inject(ImplFirestore);
         service.create$({}).subscribe((id) => {
           expect(id).toEqual('newId');

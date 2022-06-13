@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  collection,
   CollectionReference,
-  doc,
   DocumentData,
   FieldPath,
   Firestore,
@@ -15,7 +13,10 @@ import { Actions, getActionTypeFromInstance, ofActionDispatched } from '@ngxs/st
 import { defer, Observable } from 'rxjs';
 import { filter, map, startWith, switchMap } from 'rxjs/operators';
 import { GetLastPage, GetNextPage } from './actions';
+import { createId } from './ngxs-firestore.service';
+
 export type QueryFn<T = DocumentData> = (ref: CollectionReference<T>) => Query<T>;
+
 export interface FirestorePage {
   limit: number;
   id: string;
@@ -26,8 +27,7 @@ export class NgxsFirestorePageIdService {
   constructor(private firestore: Firestore) {}
 
   createId() {
-    // https://github.com/angular/angularfire/discussions/2900#discussioncomment-1343797
-    return doc(collection(this.firestore, '_')).id;
+    return createId(this.firestore);
   }
 }
 

@@ -17,6 +17,7 @@ import {
   setDoc,
   SetOptions
 } from '@angular/fire/firestore';
+import type { Firestore } from '@angular/fire/firestore/firebase';
 import { from, Observable, of } from 'rxjs';
 import { map, mapTo, timeoutWith } from 'rxjs/operators';
 import { QueryFn } from './ngxs-firestore-page.service';
@@ -24,6 +25,11 @@ import { NgxsFirestoreAdapter } from './ngxs-firestore.adapter';
 
 interface GetOptions {
   source: 'default' | 'server' | 'cache';
+}
+
+export function createId(firestore: Firestore) {
+  // https://github.com/angular/angularfire/discussions/2900#discussioncomment-1343797
+  return doc(collection(firestore, '_')).id;
 }
 
 /**
@@ -48,8 +54,7 @@ export abstract class NgxsFirestore<T> {
   };
 
   public createId() {
-    // https://github.com/angular/angularfire/discussions/2900#discussioncomment-1343797
-    return doc(collection(this.adapter.firestore, '_')).id;
+    return createId(this.adapter.firestore);
   }
 
   public doc$(id: string): Observable<T> {
