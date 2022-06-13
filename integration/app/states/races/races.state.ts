@@ -66,7 +66,7 @@ export class RacesState implements NgxsOnInit {
         const obs$ = this.ngxsFirestorePage.create<Race>(
           (pageFn) => this.racesFS.collection$((ref) => query<Race>(pageFn(ref), where('s', '>=', 's'))),
           5,
-          [{ fieldPath: 'title' }]
+          [{ fieldPath: 's' }, { fieldPath: 'title' }]
         );
 
         return obs$;
