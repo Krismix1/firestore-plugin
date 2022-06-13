@@ -43,36 +43,32 @@ describe('NgxsFirestore', () => {
     }
 
     describe('create$', () => {
-      it('should create id if not provided', () => {
-        // createIdMock.mockReturnValue('newId');
+      it('should create id if not provided', async () => {
+        createIdMock.mockReturnValue('newId');
         const service: ImplFirestore = TestBed.inject(ImplFirestore);
-        service.create$({}).subscribe((id) => {
-          expect(id).toEqual('newId');
-        });
+        const id = await service.create$({}).toPromise();
+        expect(id).toEqual('newId');
       });
 
-      it('should return id when provided', () => {
+      it('should return id when provided', async () => {
         const service: ImplFirestore = TestBed.inject(ImplFirestore);
-        service.create$({ id: 'someid' }).subscribe((id) => {
-          expect(id).toEqual('someid');
-        });
+        const id = await service.create$({ id: 'someid' }).toPromise();
+        expect(id).toEqual('someid');
       });
     });
 
     describe('upsert$', () => {
-      it('should create id if not provided', () => {
+      it('should create id if not provided', async () => {
         createIdMock.mockReturnValue('newId');
         const service: ImplFirestore = TestBed.inject(ImplFirestore);
-        service.upsert$({}).subscribe((id) => {
-          expect(id).toEqual('newId');
-        });
+        const id = await service.upsert$({}).toPromise();
+        expect(id).toEqual('newId');
       });
 
-      it('should return id when provided', () => {
+      it('should return id when provided', async () => {
         const service: ImplFirestore = TestBed.inject(ImplFirestore);
-        service.upsert$({ id: 'someid' }).subscribe((id) => {
-          expect(id).toEqual('someid');
-        });
+        const id = await service.upsert$({ id: 'someid' }).toPromise();
+        expect(id).toEqual('someid');
       });
     });
   });
