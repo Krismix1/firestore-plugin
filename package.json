@@ -71,42 +71,5 @@
   "resolutions": {
     "**/**/lodash": "^4.17.19",
     "**/**/dot-prop": "^5.1.1"
-  },
-  "bundleDependencies": false,
-  "deprecated": false,
-  "description": "![master](https://github.com/ngxs-labs/firestore-plugin/workflows/master/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/%40ngxs-labs%2Ffirestore-plugin.svg)](https://badge.fury.io/js/%40ngxs-labs%2Ffirestore-plugin) [![Coverage Status](https://coveralls.io/repos/github/ngxs-labs/firestore-plugin/badge.svg?branch=master)](https://coveralls.io/github/ngxs-labs/firestore-plugin?branch=master)",
-  "es2015_ivy_ngcc": "__ivy_ngcc__/fesm2015/ngxs-labs-firestore-plugin.js",
-  "es2015": "fesm2015/ngxs-labs-firestore-plugin.js",
-  "esm2015": "esm2015/ngxs-labs-firestore-plugin.js",
-  "fesm2015_ivy_ngcc": "__ivy_ngcc__/fesm2015/ngxs-labs-firestore-plugin.js",
-  "fesm2015": "fesm2015/ngxs-labs-firestore-plugin.js",
-  "homepage": "https://github.com/ngxs-labs/firebase-plugin#readme",
-  "keywords": [
-    "firestore",
-    "ngxs",
-    "ngxs-labs"
-  ],
-  "license": "MIT",
-  "main": "bundles/ngxs-labs-firestore-plugin.umd.js",
-  "metadata": "ngxs-labs-firestore-plugin.metadata.json",
-  "module_ivy_ngcc": "__ivy_ngcc__/fesm2015/ngxs-labs-firestore-plugin.js",
-  "module": "fesm2015/ngxs-labs-firestore-plugin.js",
-  "peerDependencies": {
-    "@angular/fire": ">=5.0.0 <7.0.0",
-    "@ngxs/store": ">=3.4.0 <4.0.0"
-  },
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ngxs-labs/firestore-plugin.git"
-  },
-  "sideEffects": false,
-  "typings": "ngxs-labs-firestore-plugin.d.ts",
-  "version": "0.1.34",
-  "__processed_by_ivy_ngcc__": {
-    "es2015": "12.2.5",
-    "fesm2015": "12.2.5",
-    "module": "12.2.5",
-    "typings": "12.2.5"
   }
 }

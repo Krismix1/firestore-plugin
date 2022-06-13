@@ -5,13 +5,11 @@ describe('OtherComponent', () => {
   let component: OtherComponent;
   let fixture: ComponentFixture<OtherComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [OtherComponent]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [OtherComponent]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {});
 

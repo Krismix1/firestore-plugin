@@ -12,24 +12,22 @@ describe('Races State', () => {
   let mockRacesFS;
   let mockCollection$: jest.Mock;
 
-  beforeEach(
-    waitForAsync(() => {
-      mockRacesFS = jest.fn(() => ({
-        collection$: mockCollection$
-      }));
+  beforeEach(waitForAsync(() => {
+    mockRacesFS = jest.fn(() => ({
+      collection$: mockCollection$
+    }));
 
-      mockCollection$ = jest.fn();
+    mockCollection$ = jest.fn();
 
-      TestBed.configureTestingModule({
-        imports: [NgxsModule.forRoot([RacesState]), NgxsFirestoreModule.forRoot()],
-        providers: [
-          { provide: RacesFirestore, useValue: mockRacesFS() },
-          { provide: NgxsFirestorePageIdService, useValue: { createId: jest.fn() } }
-        ]
-      }).compileComponents();
-      store = TestBed.inject(Store);
-    })
-  );
+    TestBed.configureTestingModule({
+      imports: [NgxsModule.forRoot([RacesState]), NgxsFirestoreModule.forRoot()],
+      providers: [
+        { provide: RacesFirestore, useValue: mockRacesFS() },
+        { provide: NgxsFirestorePageIdService, useValue: { createId: jest.fn() } }
+      ]
+    }).compileComponents();
+    store = TestBed.inject(Store);
+  }));
 
   it('should getall races', () => {
     mockCollection$.mockReturnValue(new BehaviorSubject([{ raceId: 'a' }]));

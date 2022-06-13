@@ -1,6 +1,6 @@
 {
   "name": "@ngxs-labs/firestore-plugin",
-  "version": "0.1.37",
+  "version": "0.1.36",
   "peerDependencies": {
     "@ngxs/store": ">=3.4.0 <4.0.0",
     "@angular/fire": ">=7.0.0 <7.4.0"
@@ -10,17 +10,11 @@
     "type": "git",
     "url": "https://github.com/ngxs-labs/firestore-plugin"
   },
-  "scripts": {
-    "build:lib": "ng-packagr"
-  },
   "license": "MIT",
   "private": false,
   "keywords": [
     "firestore",
     "ngxs",
     "ngxs-labs"
-  ],
-  "devDependencies": {
-    "ng-packagr": "^13.3.1"
-  }
+  ]
 }

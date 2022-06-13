@@ -12,22 +12,20 @@ describe('Classifications State', () => {
   let mockClassificationsFS;
   let mockCollection$: jest.Mock;
 
-  beforeEach(
-    waitForAsync(() => {
-      mockClassificationsFS = jest.fn(() => ({
-        collection$: mockCollection$,
-        setRaceId: jest.fn()
-      }));
+  beforeEach(waitForAsync(() => {
+    mockClassificationsFS = jest.fn(() => ({
+      collection$: mockCollection$,
+      setRaceId: jest.fn()
+    }));
 
-      mockCollection$ = jest.fn();
+    mockCollection$ = jest.fn();
 
-      TestBed.configureTestingModule({
-        imports: [NgxsModule.forRoot([ClassificationsState]), NgxsFirestoreModule.forRoot()],
-        providers: [{ provide: ClassificationsFirestore, useValue: mockClassificationsFS() }]
-      }).compileComponents();
-      store = TestBed.inject(Store);
-    })
-  );
+    TestBed.configureTestingModule({
+      imports: [NgxsModule.forRoot([ClassificationsState]), NgxsFirestoreModule.forRoot()],
+      providers: [{ provide: ClassificationsFirestore, useValue: mockClassificationsFS() }]
+    }).compileComponents();
+    store = TestBed.inject(Store);
+  }));
 
   it('should getall classifications', () => {
     mockCollection$.mockReturnValue(new BehaviorSubject([{ id: 'a' }]));
